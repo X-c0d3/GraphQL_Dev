@@ -1,0 +1,64 @@
+1. npm init -y
+2. yarn add hapi nodemon
+3. yarn add mongoose
+
+//
+4. npm install --save graphql
+
+npm install apollo-server-hapi
+
+########
+1. yarn add graphql apollo-server-hapi
+
+
+yarn add hapi-swagger inert vision
+
+
+
+
+
+
+
+
+
+
+
+install mongodb
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sudo systemctl start mongod or sudo service mongod start
+sudo systemctl status mongod
+
+sudo systemctl enable mongod  (start up)
+
+
+By default mongodb is on port 27017
+
+mongo --host 127.0.0.1:27017
+
+
+mongo localhost:27017/admin -u admin -p SECRETPASSWORD
+
+//graphql_dev
+mongo localhost:27017/admin -u admin -p SECRETPASSWORD
+
+$ mongo
+> use some_db
+db.createUser({user:"jib",pwd:"1234", roles:[{role:"root",db:"admin"}]})
+
+or
+
+$ mongo
+> use some_db
+db.createUser(
+    {
+      user: "jib",
+      pwd: "1234",
+      roles: ["readWrite"]
+    }
+)
+
+
+https://medium.freecodecamp.org/how-to-set-up-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-part-ii-80266790a3ac
