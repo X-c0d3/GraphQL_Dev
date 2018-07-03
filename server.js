@@ -21,7 +21,7 @@ const server = hapi.server({
 	port: 4444
 });
 //Connect DataBase : MongoDB
-mongoose.connect('mongodb://jib:1234@localhost:27017/graphql_dev');
+mongoose.connect('mongodb://jib:1234@127.0.0.1:27017/graphql_dev');
 // or  (without credential)
 //mongoose.connect('mongodb://localhost:27017/graphql_dev');
 

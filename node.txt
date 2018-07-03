@@ -54,25 +54,45 @@ mongo localhost:27017/admin -u admin -p SECRETPASSWORD
 mongo localhost:27017/admin -u admin -p SECRETPASSWORD
 
 $ mongo
-> use some_db
+> use graphql_dev
+> db
+
 db.createUser({user:"jib",pwd:"1234", roles:[{role:"root",db:"admin"}]})
+
+db.addUser( { user: "root",
+              pwd: "giffy@1234",
+              roles: [ "readWrite", "dbAdmin" ]
+            } )
 
 or
 
 $ mongo
-> use some_db
-db.createUser(
-    {
-      user: "jib",
-      pwd: "1234",
-      roles: ["readWrite"]
-    }
-)
+> use graphql_dev
+db.createUser({user: "jib",pwd: "1234",roles: ["readWrite"]})
+
+2.4
+db.addUser({user: "jib",pwd: "1234",roles: ["readWrite"]})
+
+db = db.getSiblingDB('admin')
+db.addUser( { user: "jib",
+              pwd: "1234",
+              roles: [ "clusterAdmin" ],
+              otherDBRoles: { config: [ "readWrite" ]
+            } } )
 
 
 https://medium.freecodecamp.org/how-to-set-up-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-part-ii-80266790a3ac
 
+show dbs
+use graphql_dev
+show collections
+show tables
 
+var collections = db.getCollectionNames();
+for(var i = 0; i< collections.length; i++) {    
+   print('Collection: ' + collections[i]);
+   db.getCollection(collections[i]).find().forEach(printjson);
+}
 
 
 ################# Query UI #####################
