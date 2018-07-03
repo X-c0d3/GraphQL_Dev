@@ -1,29 +1,38 @@
+GraphQL with Hapi
 1. npm init -y
 2. yarn add hapi nodemon
 3. yarn add mongoose
-
-//
-4. npm install --save graphql
-
-npm install apollo-server-hapi
+npm install --save apollo-server-hapi graphql
+or 
+yarn add graphql apollo-server-hapi
 
 ########
-1. yarn add graphql apollo-server-hapi
+1. 
 
 
 yarn add hapi-swagger inert vision
 
 
 
+GraphQL with Express
+1. npm init -y
+2. npm install graphql express nodemon cors body-parser appllo-server-express
+3. 
+
+
+express : server
+body-parser : เข้าใจ Query ที่มาจาก url
+graphqlExpress, graphqliExpress : from Apollo server
+cors : 
+endpoint : 
 
 
 
 
 
+########## install mongodb on Ubuntu ##########
 
 
-
-install mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 sudo apt-get update
@@ -62,3 +71,32 @@ db.createUser(
 
 
 https://medium.freecodecamp.org/how-to-set-up-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-part-ii-80266790a3ac
+
+
+
+
+################# Query UI #####################
+query {
+  allWorkspace {
+    id,
+    name,
+    url,
+    technique
+  } 
+}
+
+***** with parameter *****
+query ($id: String) {
+  getWorkspaceById(id: $id) {
+    id
+    name
+    url
+    technique
+  }
+}
+
+Query Variables
+{
+   "id" :"5b3b1a9ba32f6d3eb00386d2"
+} 
+##################################

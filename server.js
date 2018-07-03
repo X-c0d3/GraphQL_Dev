@@ -1,8 +1,14 @@
+'use strict'
+
 const hapi = require('hapi');
 const mongoose = require('mongoose');
-const Painting = require('./models/Painting');
+const Workspace = require('./models/Workspace');
 
-const { graphqlHapi, graphiqlHapi } = require('apollo-server-hapi');
+const {
+	graphqlHapi,
+	graphiqlHapi
+} = require('apollo-server-hapi');
+
 const schema = require('./graphql/schema');
 
 const Inert = require('inert');
@@ -11,33 +17,34 @@ const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package');
 
 const server = hapi.server({
-    host: 'localhost',
-    port: 4444
+	host: 'localhost',
+	port: 4444
 });
-
+//Connect DataBase : MongoDB
 mongoose.connect('mongodb://jib:1234@localhost:27017/graphql_dev');
-// or
+// or  (without credential)
 //mongoose.connect('mongodb://localhost:27017/graphql_dev');
+
 mongoose.connection.once('open', () => {
-    console.log('connected to database');
+	console.log('connected to database');
 });
 
 const init = async () => {
-    await server.register([
+	await server.register([
 		Inert,
 		Vision,
 		{
 			plugin: HapiSwagger,
 			options: {
 				info: {
-					title: 'Paintings API Documentation',
+					title: 'Emplyee API Documentation',
 					version: Pack.version
 				}
 			}
 		}
 	]);
 
-    await server.register({
+	await server.register({
 		plugin: graphiqlHapi,
 		options: {
 			path: '/graphiql',
@@ -61,38 +68,42 @@ const init = async () => {
 				cors: true
 			}
 		}
-    });
-    server.route([
-		{
+	});
+	server.route([{
 			method: 'GET',
-			path: '/api/v1/paintings',
+			path: '/api/v1/workspaceall',
 			config: {
-				description: 'Get all the paintings',
-				tags: ['api', 'v1', 'painting']
+				description: 'Get all the workspaces',
+				tags: ['api', 'v1', 'workspace']
 			},
 			handler: (req, reply) => {
-				return Painting.find();
+				return Workspace.find();
 			}
 		},
 		{
 			method: 'POST',
-			path: '/api/v1/paintings',
+			path: '/api/v1/workspaceall',
 			config: {
-				description: 'Get a specific painting by ID.',
-				tags: ['api', 'v1', 'painting']
+				description: 'Add workspace',
+				tags: ['api', 'v1', 'workspace']
 			},
 			handler: (req, reply) => {
-				const { name, url, technique } = req.payload;
-				const painting = new Painting({
+				const {
+					name,
+					url,
+					technique
+				} = req.payload;
+
+				const workspaceObject = new Workspace({
 					name,
 					url,
 					technique
 				});
 
-				return painting.save();
+				return workspaceObject.save();
 			}
 		}
-	]); 
+	]);
 
 	await server.start();
 	console.log(`Server running at: ${server.info.uri}`);

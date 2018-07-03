@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
   an ID by default to all schemas
 */
 
-const PaintingSchema = new Schema({
+const WorkspaceSchema = new Schema({
 	name: String,
 	url: String,
 	technique: String
 });
 
-module.exports = mongoose.model('Painting', PaintingSchema);
+module.exports = mongoose.model('Workspace', WorkspaceSchema);

@@ -2,8 +2,8 @@ const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLString } = graphql;
 
-const PaintingType = new GraphQLObjectType({
-    name: 'Painting',
+const WorkspaceType = new GraphQLObjectType({
+    name: 'Workspace',
     fields: () => ({
         id: { type: GraphQLString },
         name: { type: GraphQLString },
@@ -12,4 +12,4 @@ const PaintingType = new GraphQLObjectType({
     })
 });
 
-module.exports = PaintingType;
+module.exports = WorkspaceType;
