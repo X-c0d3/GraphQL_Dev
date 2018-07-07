@@ -126,6 +126,26 @@ Query Variables
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################
+
+Install mongoDB on raspberry Pi 3
+################################################################
+
 https://andyfelong.com/downloads/core_mongodb_3_0_14.tar.gz
 https://andyfelong.com/downloads/tools_mongodb_3_0_14.tar.gz
 
@@ -182,3 +202,19 @@ systemctl start mongodb.service
 systemctl status mongodb.service
 
 systemctl disable mongodb.service
+
+
+
+###########################################
+Install NodeJS, npm , yarn on Raspberry Pi 
+###########################################
+
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install yarn
+sudo npm install npm@latest -g
+
+sudo npm install -g node-gyp npm-check npm-check-updates
