@@ -59,8 +59,8 @@ $ mongo
 
 db.createUser({user:"jib",pwd:"1234", roles:[{role:"root",db:"admin"}]})
 
-db.addUser( { user: "root",
-              pwd: "giffy@1234",
+db.addUser( { user: "eikon5workspace",
+              pwd: "workspace1234",
               roles: [ "readWrite", "dbAdmin" ]
             } )
 
@@ -68,14 +68,16 @@ or
 
 $ mongo
 > use graphql_dev
-db.createUser({user: "jib",pwd: "1234",roles: ["readWrite"]})
+db.createUser({user: "eikon5workspace",pwd: "1234",roles: ["readWrite"]})
 
 2.4
-db.addUser({user: "jib",pwd: "1234",roles: ["readWrite"]})
+db.addUser({user: "eikon5workspace",pwd: "workspace1234",roles: ["readWrite"]})
+show users
+
 
 db = db.getSiblingDB('admin')
-db.addUser( { user: "jib",
-              pwd: "1234",
+db.addUser( { user: "eikon5workspace",
+              pwd: "workspace1234",
               roles: [ "clusterAdmin" ],
               otherDBRoles: { config: [ "readWrite" ]
             } } )
